@@ -1,0 +1,12 @@
+class Rfid:
+		def read_uid():
+			id = int ( input(“Passa la targeta  “))
+			id_hex = “”
+			id_hex = hex(id)
+			id_hex = id_hex[2:]
+			id_hex = id_hex.upper()
+			return id_hex
+
+rf = Rfid()
+uid = rf.read_uid()
+print(uid)
