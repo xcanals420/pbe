@@ -8,7 +8,7 @@ from read import Rfid
 class Window(Gtk.Window):
     def __init__(self):
         
-        #CREEM LA FINESTRA
+        #CREEM UNA FINESTRA
         Gtk.Window.__init__(self, title="rfid_gtk.py")
         self.set_position(Gtk.WindowPosition.CENTER)
         self.connect("destroy", Gtk.main_quit)
@@ -19,13 +19,13 @@ class Window(Gtk.Window):
         self.box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.box.set_homogeneous(False)
         
-        #CREEM UNA ETIQUETA QUE ANIRA DINS LA CAIXA
+        #CREEM UNA ETIQUETA QUE ANIRÁ DINS LA CAIXA
         self.label = Gtk.Label(label="Please, login with your university card.")
         self.label.set_name("label")
         self.label.set_size_request(500,100)
         self.box.pack_start(self.label, True, True, 0)
         
-        #CREEM ELS ELSTILS EN CSS QUE UTILITZAREM EN EL PROGRAMA
+        #CREEM ELS ESTILS EN CSS QUE UTILITZAREM DINS EL PROGRAMA
         self.blue = b"""
                 
                 button{
@@ -57,7 +57,7 @@ class Window(Gtk.Window):
                 
             """
         
-        #CARGUEM ELS NOSTRES ESTILS CSS
+        #CARREGUEM ELS NOSTRES ESTILS CSS
         self.css_provider = Gtk.CssProvider()
         self.css_provider.load_from_data(self.blue)
         
@@ -74,13 +74,13 @@ class Window(Gtk.Window):
         #FIQUEM LA NOSTRE CAIXA A LA FINESTRA
         self.add(self.box)
 
-        #INICIALITZEM EL NOSTRE THREAD, EL QUAL S'ENCARREGA DE LLEGIR EL UID DE LA NOSTRE TARGETA
+        #INICIALITZEM EL NOSTRE THREAD, EL QUAL S'ENCARREGA DE LLEGIR EL UID DEL NOSTRE CARNET
         self.thread = threading.Thread(target=self.write_uid)
         self.thread.daemon = True
         self.thread_in_use = True
         self.thread.start()
 
-    #FUNCIÓ QUE ES CRIDADA QUAN PULSEM EL BOTÓ, LA QUAL FA QUE LA ETIQUETA TORNI AL SEU ESTAT INICIAL
+    #FUNCIÓ QUE ÉS CRIDADA QUAN PULSEM EL BOTÓ, FA QUE LA ETIQUETA TORNI AL SEU ESTAT INICIAL
     def on_button_clicked(self, widget):
         
          #AQUESTA FUNCIÓ NOMÉS ES POT UTILITZAR SI L'ETIQUETA ESTÀ EN L'ESTAT ON IMPRIMEIX EL UID
